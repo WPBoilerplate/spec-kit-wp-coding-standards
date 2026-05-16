@@ -24,6 +24,55 @@ This configuration becomes the authoritative source for all subsequent `review`,
 
 ---
 
+## Step 0 — Auto-Detect from AGENTS.md
+
+Before starting the interview, check for an `AGENTS.md` file in the project root.
+
+If found, extract the following fields and use them as pre-filled defaults:
+
+| AGENTS.md Field | Maps To | Notes |
+|---|---|---|
+| `naming_prefix` | `prefix` | Use as-is |
+| `wordpress_min_version` | `min_wp_version` | Use as-is |
+| `php_min_version` | `min_php_version` | Use as-is |
+| `coding_standard` | `profile` | See mapping below |
+| `enforce_nonces` + `enforce_capabilities` + `sanitize_input` + `escape_output` + `sql_prepared_statements` | Security category enforcement | All `true` → enforce Security + DB categories |
+
+### coding_standard → profile mapping
+
+| AGENTS.md value | Profile |
+|---|---|
+| `wpcs-strict` | `wordpress` |
+| `wpcs-core` | `wordpress-core` |
+| `wpcs-docs` | `wordpress-docs` |
+| `wpcs-vip` or `vip` | `wordpress-vip` |
+| `wordpress` | `wordpress` |
+| *(any unrecognised value)* | `wordpress` (default) |
+
+If `AGENTS.md` is found and values are extracted, show a summary and ask:
+
+```text
+I found AGENTS.md with the following settings:
+
+  Profile:     wordpress  (from coding_standard: wpcs-strict)
+  Prefix:      acrossai_  (from naming_prefix)
+  Min WP:      6.9        (from wordpress_min_version)
+  Min PHP:     7.4        (from php_min_version)
+
+Would you like to:
+  1. Use these settings as-is
+  2. Review and adjust individual settings
+  3. Ignore AGENTS.md and start fresh
+```
+
+If the user selects **1**, skip all interview phases and write the constitution immediately.
+If the user selects **2**, pre-fill all interview questions with the extracted values so they only need to confirm or change specific settings.
+If the user selects **3**, proceed with the full interview from scratch.
+
+If `AGENTS.md` is not found, proceed with the full interview below.
+
+---
+
 ## Core Principles
 
 ### 1. Sequential Interviewing

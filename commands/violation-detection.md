@@ -22,7 +22,15 @@ This command performs a **lightweight, focused scan** for WordPress coding stand
 
 Read `.specify/memory/wp-standards-constitution.md` for the active profile and prefix.
 
-If no constitution exists, output a single warning and stop:
+If no constitution exists, check for `AGENTS.md` in the project root and extract:
+- `naming_prefix` → prefix
+- `wordpress_min_version` → min WP version
+- `php_min_version` → min PHP version
+- `coding_standard` → profile (see `commands/init.md` Step 0 for mapping)
+
+If `AGENTS.md` provides sufficient configuration, proceed using those values.
+
+If neither file exists, output a single warning and stop:
 
 ```text
 WP Coding Standards not initialized. Run /speckit.wp-coding-standards.init to configure.

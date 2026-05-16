@@ -33,7 +33,13 @@ Extract:
 - `enforce_categories` — category filter (empty = all)
 - `exclude_paths` — paths to skip
 
-If no constitution exists, stop and instruct the user to run `/speckit.wp-coding-standards.init` first.
+If no constitution exists, check for `AGENTS.md` in the project root and extract configuration using the same field mapping as the `init` command (see `commands/init.md` Step 0). If `AGENTS.md` provides sufficient configuration, proceed with the review using those values and note at the top of the report:
+
+```
+> Configuration sourced from AGENTS.md — run /speckit.wp-coding-standards.init to persist a full constitution.
+```
+
+If neither file exists, stop and instruct the user to run `/speckit.wp-coding-standards.init` first.
 
 ---
 
