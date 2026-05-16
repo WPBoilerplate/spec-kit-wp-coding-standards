@@ -1,0 +1,48 @@
+# WP Coding Standards — Project Configuration Template
+# Copy to .specify/config/wp-coding-standards.yml and customize.
+
+wp_coding_standards:
+
+  # Standards profile to enforce.
+  # Options: wordpress-core | wordpress | wordpress-docs | wordpress-vip
+  profile: wordpress
+
+  # Project-specific function/hook/class prefix (required).
+  # All globals must be prefixed with this string.
+  # Example: myplugin_ → myplugin_init(), MYPLUGIN_VERSION
+  prefix: ""
+
+  # Minimum WordPress version this project targets.
+  # Used to flag deprecated functions introduced after this version.
+  min_wp_version: "6.4"
+
+  # Minimum PHP version this project targets.
+  min_php_version: "8.0"
+
+  # Project type.
+  # Options: plugin | theme | mu-plugin | block-theme
+  project_type: plugin
+
+  # Set to true if targeting WordPress.org Plugin/Theme Directory.
+  # Enables stricter checks aligned with directory guidelines.
+  wordpress_org: false
+
+  # Set to true if hosted on WordPress VIP Go.
+  # Automatically upgrades profile to wordpress-vip regardless of profile setting above.
+  vip: false
+
+  # Severity threshold for violation reporting.
+  # Options: all | critical | high | medium
+  # Violations below this threshold are suppressed in reports.
+  min_severity: high
+
+  # Categories to enforce. Leave empty to enforce all categories for the active profile.
+  # Options: security | db | naming | wp | php | docs | vip
+  # Example: [security, db] enforces only Security and DB sniffs.
+  enforce_categories: []
+
+  # Paths to exclude from review (relative to project root).
+  exclude_paths:
+    - vendor/
+    - node_modules/
+    - tests/

@@ -1,0 +1,55 @@
+schema_version: "1.0"
+
+extension:
+  id: "wp-coding-standards"
+  name: "WP Coding Standards"
+  version: "1.0.0"
+  description: "WordPress coding standards enforcement for AI-assisted development workflows."
+  author: "WPBoilerplate"
+  repository: "https://github.com/WPBoilerplate/spec-kit-wp-coding-standards"
+  license: "MIT"
+  homepage: "https://github.com/WPBoilerplate/spec-kit-wp-coding-standards"
+
+requires:
+  speckit_version: ">=0.1.0"
+
+recommends:
+  extensions:
+    - "architecture-guard"
+    - "security-review"
+
+hooks:
+  after_plan:
+    command: "speckit.wp-coding-standards.violation-detection"
+    optional: true
+    prompt: "Would you like to scan the technical plan for WordPress coding standards violations?"
+  after_tasks:
+    command: "speckit.wp-coding-standards.violation-detection"
+    optional: true
+    prompt: "Would you like to check tasks for WordPress coding standards compliance?"
+  after_implement:
+    command: "speckit.wp-coding-standards.review"
+    optional: true
+    prompt: "Would you like to run a WordPress coding standards review on the implementation?"
+
+provides:
+  commands:
+    - name: "speckit.wp-coding-standards.init"
+      file: "commands/init.md"
+      description: "Initialize the WordPress coding standards profile for this project."
+    - name: "speckit.wp-coding-standards.review"
+      file: "commands/review.md"
+      description: "Review code, specs, or plans against the configured WordPress coding standards profile."
+    - name: "speckit.wp-coding-standards.violation-detection"
+      file: "commands/violation-detection.md"
+      description: "Detect WordPress coding standards violations in plans, tasks, or implementation."
+    - name: "speckit.wp-coding-standards.apply"
+      file: "commands/apply.md"
+      description: "Convert detected violations into structured fix tasks."
+
+tags:
+  - "wordpress"
+  - "coding-standards"
+  - "wpcs"
+  - "governance"
+  - "phpcs"
